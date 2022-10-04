@@ -12,6 +12,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
+import androidx.compose.material.TextFieldColors
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.*
@@ -30,7 +32,7 @@ import com.bonbon.library.ActionChip
 import com.bonbon.library.TriggerSeparator
 import com.bonbon.library.textchipviews.MaterialTextChipView
 import com.bonbon.library.textchipviews.OutLinedTextChipView
-import com.bonbon.myapplication.ui.theme.ComposechipTheme
+import com.bonbon.myapplication.ui.theme.*
 import com.google.accompanist.insets.ProvideWindowInsets
 
 
@@ -51,21 +53,12 @@ class MainActivity : ComponentActivity() {
                                 orientation = Orientation.Vertical
                             )
                         ) {
-                            Row {
-                                Text(text = "To", modifier = Modifier.width(50.dp))
-                                MaterialChipTextViewDemo()
-                            }
-                        }
-
-                        Box(
-                            modifier = Modifier.scrollable(
-                                scrollState,
-                                orientation = Orientation.Vertical
-                            )
-                        ) {
-                            Row {
-                                Text(text = "To", modifier = Modifier.width(50.dp))
-                                OutLineChipTextViewDemo()
+                            Column(
+                                modifier = Modifier.padding(16.dp)
+                            ) {
+                                OutLineChipTextViewDemo(
+                                    label = "Email"
+                                )
                             }
                         }
                     }
@@ -78,33 +71,30 @@ class MainActivity : ComponentActivity() {
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @Composable
-private fun OutLineChipTextViewDemo() {
+private fun OutLineChipTextViewDemo(
+    label: String
+) {
     var text by remember {
         mutableStateOf("")
     }
 
-    val items = remember {
-        mutableStateListOf(
-            ChipItem("Adam", R.drawable.ic_baseline_android_24),
-            ChipItem("Eve"),
-            ChipItem("Ken"),
-            ChipItem("William"),
-            ChipItem("Julien"),
-        )
-    }
-
+    Text(
+        text = label,
+        modifier = Modifier.padding(bottom = 4.dp)
+    )
     val selectedItems = remember {
         mutableStateListOf<ChipItem>()
     }
 
     OutLinedTextChipView(
-        modifier = Modifier.padding(4.dp),
-        searchableItems = items,
+        modifier = Modifier,
         chipItems = selectedItems,
         shape = RoundedCornerShape(6.dp),
         text = text,
+        focusColor = PrimaryBase,
+        unFocusColor = Neutral40,
         onValueChange = {
-            text = if (it.trim().isNotEmpty() && it.contains(TriggerSeparator.Space.value)) {
+            text = if (it.trim().isNotEmpty() && it.contains(TriggerSeparator.Space.value) || it.contains(TriggerSeparator.Enter.value)) {
                 val trimmedText = text.trim()
                 selectedItems.add(ChipItem(trimmedText))
                 ""
@@ -117,6 +107,8 @@ private fun OutLineChipTextViewDemo() {
                 text = it.value,
                 closeIcon = rememberVectorPainter(image = Icons.Default.Close),
                 avatar = it.icon?.let { it1 -> painterResource(id = it1) },
+                color = Neutral20,
+
                 shape = RoundedCornerShape(18.dp)
             ) {
                 selectedItems.remove(it)
@@ -129,78 +121,7 @@ private fun OutLineChipTextViewDemo() {
                 }
             }
         },
-        textStyle = TextStyle.Default.copy(color = Color.Red)
-    ) {
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .clickable {
-                selectedItems.add(it)
-            }
-            .padding(8.dp)) {
-            Text(text = it.value)
-        }
-    }
-}
-
-@ExperimentalAnimationApi
-@ExperimentalComposeUiApi
-@Composable
-private fun MaterialChipTextViewDemo() {
-    var text by remember {
-        mutableStateOf("")
-    }
-
-    val items = remember {
-        mutableStateListOf(
-            ChipItem("Adam", R.drawable.ic_baseline_android_24),
-            ChipItem("Eve"),
-            ChipItem("Ken"),
-            ChipItem("William"),
-            ChipItem("Julien"),
-        )
-    }
-
-    val selectedItems = remember {
-        mutableStateListOf<ChipItem>()
-    }
-
-    MaterialTextChipView(
-        modifier = Modifier.padding(4.dp, end = 100.dp),
-        searchableItems = items,
-        chipItems = selectedItems,
-        shape = RoundedCornerShape(6.dp),
-        text = text,
-        textStyle = TextStyle.Default.copy(fontSize = 12.sp),
-        onValueChange = {
-            text = if (it.trim().isNotEmpty() && it.contains(TriggerSeparator.Space.value)) {
-                val trimmedText = text.trim()
-                items.add(ChipItem(trimmedText))
-                selectedItems.add(ChipItem(trimmedText))
-                ""
-            } else {
-                it
-            }
-        },
-        chipContent = {
-
-            // can create your own buy using BonChip
-            ActionChip(
-                text = it.value,
-                closeIcon = rememberVectorPainter(image = Icons.Default.Close),
-                avatar = it.icon?.let { it1 -> painterResource(id = it1) },
-                shape = RoundedCornerShape(18.dp),
-            ) {
-                selectedItems.remove(it)
-            }
-        },
-        onKeyEvent = {
-            if (it.key == Key.Backspace) {
-                if (text.isEmpty() && selectedItems.count() > 0) {
-                    selectedItems.removeAt(0.coerceAtLeast(selectedItems.count() - 1))
-                }
-            }
-        },
-        cursorBrush = SolidColor(Color.Red)
+        textStyle = TextStyle.Default.copy(color = Neutral90)
     ) {
         Box(modifier = Modifier
             .fillMaxWidth()

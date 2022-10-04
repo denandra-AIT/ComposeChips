@@ -57,7 +57,6 @@ fun <T> MaterialTextChipView(
     CoreChipView(
         modifier = modifier,
         textPadding = textPadding,
-        filteredItems = filteredItems,
         chipItems = chipItems,
         isFocused = isFocused,
         shape = shape,
@@ -69,12 +68,6 @@ fun <T> MaterialTextChipView(
         }
     ) {
         BasicTextField(value = text, onValueChange = {
-            filteredItems = searchableItems.filter { item ->
-                item.filter(query = it)
-            }
-            if (filteredItems.count() <= 0) {
-                filteredItems = searchableItems
-            }
 
             isFocused = true
             onValueChange(it)

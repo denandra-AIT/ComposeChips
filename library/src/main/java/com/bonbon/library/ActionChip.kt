@@ -47,22 +47,12 @@ fun ActionChip(
             Row(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                if (avatar != null) {
-                    Icon(
-                        painter = avatar,
-                        contentDescription = "avatar",
-                        modifier = Modifier.size(24.dp)
-                            .padding(start = 4.dp)
-                            .border(1.dp, color, CircleShape)
-                    )
-                }
                 Text(
                     text = text,
                     style = textStyle,
                     modifier = Modifier.padding(8.dp, 4.dp),
                     fontSize = fontSize
                 )
-
                 Icon(
                     closeIcon,
                     contentDescription = "Close Chip",

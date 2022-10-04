@@ -26,7 +26,7 @@ internal fun <T> CoreChipView(
     modifier: Modifier = Modifier,
     focusRequester: FocusRequester,
     textPadding: Dp = 8.dp,
-    filteredItems: List<T>,
+//    filteredItems: List<T>,
     chipItems: List<T>,
     shape: Shape = MaterialTheme.shapes.medium,
     keyboardController: SoftwareKeyboardController? = LocalSoftwareKeyboardController.current,
@@ -61,24 +61,24 @@ internal fun <T> CoreChipView(
 
             Spacer(modifier = Modifier.padding(1.dp))
 
-            PopupContent(
-                width = boxWithConstraints.maxWidth,
-                isTextFocused = isFocused,
-                shape = shape,
-                onDismissed = {
-                    onClicked(false)
-                }
-            ) {
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    content = {
-                        items(items = filteredItems, itemContent = { item ->
-                            dropDownContent(item)
-                        })
-                    }
-                )
-            }
+//            PopupContent(
+//                width = boxWithConstraints.maxWidth,
+//                isTextFocused = isFocused,
+//                shape = shape,
+//                onDismissed = {
+//                    onClicked(false)
+//                }
+//            ) {
+//                LazyColumn(
+//                    modifier = Modifier
+//                        .fillMaxWidth(),
+//                    content = {
+//                        items(items = filteredItems, itemContent = { item ->
+//                            dropDownContent(item)
+//                        })
+//                    }
+//                )
+//            }
         }
 
     }

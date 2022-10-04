@@ -30,22 +30,18 @@ import com.bonbon.library.model.FilterableEntity
 fun <T> OutLinedTextChipView(
     modifier: Modifier = Modifier,
     textPadding: Dp = 8.dp,
-    searchableItems: List<T>,
     chipItems: List<T>,
     text: String,
     shape: Shape = MaterialTheme.shapes.medium,
-    borderStroke: BorderStroke = BorderStroke(2.dp, MaterialTheme.colors.primary),
-    textStyle: TextStyle = TextStyle.Default,
+    focusColor: Color = MaterialTheme.colors.primary,
+    unFocusColor: Color = MaterialTheme.colors.primary,
+    textStyle: TextStyle = MaterialTheme.typography.body1,
     cursorBrush: Brush = SolidColor(Color.Black),
     onValueChange: (String) -> Unit,
     onKeyEvent: (KeyEvent) -> Unit,
     chipContent: @Composable (T) -> Unit,
-    dropDownContent: @Composable (T) -> Unit
+    dropDownContent: @Composable (T) -> Unit,
 ) where T : FilterableEntity {
-
-    var filteredItems by remember {
-        mutableStateOf(searchableItems.distinct())
-    }
 
     var isFocused by remember {
         mutableStateOf(false)
@@ -55,9 +51,11 @@ fun <T> OutLinedTextChipView(
 
 
     CoreChipView(
-        modifier = modifier.border(border = borderStroke, shape = shape),
+        modifier = modifier.border(
+            border = BorderStroke(2.dp, if (isFocused) focusColor else unFocusColor),
+            shape = shape
+        ),
         textPadding = textPadding,
-        filteredItems = filteredItems,
         chipItems = chipItems,
         isFocused = isFocused,
         shape = shape,
@@ -68,13 +66,11 @@ fun <T> OutLinedTextChipView(
             isFocused = it
         }
     ) {
-        BasicTextField(value = text, onValueChange = {
-            filteredItems = searchableItems.filter { item ->
-                item.filter(query = it)
-            }
+        BasicTextField(
+            value = text,
+            onValueChange = {
             isFocused = true
             onValueChange(it)
-
         }, modifier = Modifier
             .width(IntrinsicSize.Min)
             .defaultMinSize(15.dp)
@@ -88,7 +84,7 @@ fun <T> OutLinedTextChipView(
             }
             .focusRequester(focusRequester = focusRequester),
             cursorBrush = cursorBrush,
-            textStyle = textStyle
+            textStyle = textStyle,
         )
     }
 }
