@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'maven-publish'
 }
 
 android {
@@ -34,19 +33,6 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion '1.0.3'
         kotlinCompilerVersion '1.5.30'
-    }
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.release
-                groupId 'com.github.denandra-AIT'
-                artifactId 'ComposeChips'
-                version = android.defaultConfig.versionName // or manually '1.0'
-            }
-        }
     }
 }
 
