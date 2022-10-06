@@ -52,7 +52,7 @@ fun <T> OutLinedTextChipView(
 
     CoreChipView(
         modifier = modifier.border(
-            border = BorderStroke(2.dp, if (isFocused) focusColor else unFocusColor),
+            border = BorderStroke(if (isFocused) 2.dp else 1.dp, if (isFocused) focusColor else unFocusColor),
             shape = shape
         ),
         textPadding = textPadding,

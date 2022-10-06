@@ -8,6 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.*
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
@@ -24,7 +25,8 @@ import com.bonbon.myapplication.ui.theme.*
 @Composable
 fun OutlineChipsTextField(
     label: String,
-    labelStyle: Modifier = Modifier
+    labelStyle: TextStyle = TextStyle(),
+    value: (SnapshotStateList<ChipItem>) -> Unit
 ) {
     var text by remember {
         mutableStateOf("")
@@ -32,6 +34,7 @@ fun OutlineChipsTextField(
 
     Text(
         text = label,
+        style = labelStyle,
         modifier = Modifier.padding(bottom = 4.dp)
     )
     val selectedItems = remember {
@@ -53,12 +56,12 @@ fun OutlineChipsTextField(
             } else {
                 it
             }
+            value(selectedItems)
         },
         chipContent = {
             ActionChip(
                 text = it.value,
                 closeIcon = rememberVectorPainter(image = Icons.Default.Close),
-                avatar = it.icon?.let { it1 -> painterResource(id = it1) },
                 color = Neutral20,
 
                 shape = RoundedCornerShape(18.dp)
