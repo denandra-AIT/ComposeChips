@@ -1,6 +1,7 @@
 package com.bonbon.myapplication
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -17,6 +18,7 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.*
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,6 +31,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bonbon.library.ActionChip
+import com.bonbon.library.ChipItem
 import com.bonbon.library.OutlineChipsTextField
 import com.bonbon.library.TriggerSeparator
 import com.bonbon.library.textchipviews.MaterialTextChipView
@@ -47,6 +50,7 @@ class MainActivity : ComponentActivity() {
                 ProvideWindowInsets(
                 ) {
                     val scrollState = rememberScrollState()
+                    var selectedItems = SnapshotStateList<ChipItem>()
                     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                         Box(
                             modifier = Modifier.scrollable(
@@ -59,7 +63,12 @@ class MainActivity : ComponentActivity() {
                             ) {
                                 OutlineChipsTextField(
                                     label = "Email"
-                                )
+                                ) {
+//                                    for (i in it) {
+//                                        Log.d("TAG", "onCreate: ${i.value}")
+//                                    }
+//                                    selectedItems = it
+                                }
                             }
                         }
                     }

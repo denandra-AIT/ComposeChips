@@ -27,7 +27,6 @@ import com.bonbon.library.corecomponent.BonChip
 fun ActionChip(
     text: String,
     modifier: Modifier = Modifier,
-    avatar: Painter? = null,
     fontSize: TextUnit = TextUnit.Unspecified,
     color: Color = MaterialTheme.colors.primary,
     shape: Shape = MaterialTheme.shapes.medium,
