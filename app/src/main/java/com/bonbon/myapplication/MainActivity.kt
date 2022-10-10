@@ -62,7 +62,8 @@ class MainActivity : ComponentActivity() {
                                 modifier = Modifier.padding(16.dp)
                             ) {
                                 OutlineChipsTextField(
-                                    label = "Email"
+                                    label = "Email",
+                                    color = Neutral90
                                 ) {
 //                                    for (i in it) {
 //                                        Log.d("TAG", "onCreate: ${i.value}")
