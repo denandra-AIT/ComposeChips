@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.key
@@ -26,7 +27,8 @@ import com.bonbon.myapplication.ui.theme.*
 fun OutlineChipsTextField(
     label: String,
     labelStyle: TextStyle = TextStyle(),
-    value: (SnapshotStateList<ChipItem>) -> Unit
+    color: Color = Neutral90,
+    value: (SnapshotStateList<ChipItem>) -> Unit,
 ) {
     var text by remember {
         mutableStateOf("")
@@ -35,7 +37,8 @@ fun OutlineChipsTextField(
     Text(
         text = label,
         style = labelStyle,
-        modifier = Modifier.padding(bottom = 4.dp)
+        modifier = Modifier.padding(bottom = 4.dp),
+        color = color,
     )
     val selectedItems = remember {
         mutableStateListOf<ChipItem>()
