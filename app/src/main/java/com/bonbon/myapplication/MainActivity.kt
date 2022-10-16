@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val scrollState = rememberScrollState()
                     var selectedItems = SnapshotStateList<ChipItem>()
-                    var asd = mutableListOf<String?>("heheh", "qweqwe", "opoaopopo")
+                    var asd = mutableListOf<String?>("Apple", "Banana", "qweq")
                     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                         Box(
                             modifier = Modifier.scrollable(
