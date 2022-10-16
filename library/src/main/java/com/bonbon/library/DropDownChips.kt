@@ -25,12 +25,13 @@ import com.bonbon.myapplication.ui.theme.*
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @Composable
-fun OutlineChipsTextField(
+fun DropDownChipsTextField(
     label: String,
     labelStyle: TextStyle = TextStyle(),
     color: Color = Neutral90,
+    selectedItems: SnapshotStateList<ChipItem> = mutableStateListOf(),
     show: () -> Unit = {},
-    icon: Painter?,
+    icon: Painter,
     value: (SnapshotStateList<ChipItem>) -> Unit,
 ) {
     var text by remember {
@@ -43,9 +44,9 @@ fun OutlineChipsTextField(
         modifier = Modifier.padding(bottom = 4.dp),
         color = color,
     )
-    val selectedItems = remember {
-        mutableStateListOf<ChipItem>()
-    }
+//    val selectedItems = remember {
+//        mutableStateListOf<ChipItem>()
+//    }
 
     OutLinedTextChipView(
         modifier = Modifier,
@@ -85,6 +86,7 @@ fun OutlineChipsTextField(
         textStyle = TextStyle.Default.copy(color = Neutral90),
         show = show,
         icon = icon,
+        enable = false
     ) {
         Box(modifier = Modifier
             .fillMaxWidth()

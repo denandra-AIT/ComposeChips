@@ -3,9 +3,12 @@ package com.bonbon.library.textchipviews
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.R
 import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -16,8 +19,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.onKeyEvent
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -37,6 +42,9 @@ fun <T> OutLinedTextChipView(
     unFocusColor: Color = MaterialTheme.colors.primary,
     textStyle: TextStyle = MaterialTheme.typography.body1,
     cursorBrush: Brush = SolidColor(Color.Black),
+    show: () -> Unit = {},
+    icon: Painter?,
+    enable: Boolean = true,
     onValueChange: (String) -> Unit,
     onKeyEvent: (KeyEvent) -> Unit,
     chipContent: @Composable (T) -> Unit,
@@ -48,7 +56,6 @@ fun <T> OutLinedTextChipView(
     }
 
     val focusRequester = FocusRequester()
-
 
     CoreChipView(
         modifier = modifier.border(
@@ -62,6 +69,8 @@ fun <T> OutLinedTextChipView(
         chipContent = chipContent,
         dropDownContent = dropDownContent,
         focusRequester = focusRequester,
+        show = show,
+        icon = icon,
         onClicked = {
             isFocused = it
         }
@@ -69,22 +78,23 @@ fun <T> OutLinedTextChipView(
         BasicTextField(
             value = text,
             onValueChange = {
-            isFocused = true
-            onValueChange(it)
-        }, modifier = Modifier
-            .width(IntrinsicSize.Min)
-            .defaultMinSize(15.dp)
-            .padding(6.dp)
-            .onFocusChanged {
-                isFocused = it.isFocused
-            }
-            .onKeyEvent {
-                onKeyEvent(it)
-                false
-            }
-            .focusRequester(focusRequester = focusRequester),
+                isFocused = true
+                onValueChange(it)
+            }, modifier = Modifier
+                .width(IntrinsicSize.Min)
+                .defaultMinSize(15.dp)
+                .padding(6.dp)
+                .onFocusChanged {
+                    isFocused = it.isFocused
+                }
+                .onKeyEvent {
+                    onKeyEvent(it)
+                    false
+                }
+                .focusRequester(focusRequester = focusRequester),
             cursorBrush = cursorBrush,
             textStyle = textStyle,
+            enabled = enable
         )
     }
 }

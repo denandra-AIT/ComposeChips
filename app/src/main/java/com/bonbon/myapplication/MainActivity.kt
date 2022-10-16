@@ -1,41 +1,22 @@
 package com.bonbon.myapplication
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Text
-import androidx.compose.material.TextFieldColors
-import androidx.compose.material.TextFieldDefaults
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.input.key.Key
-import androidx.compose.ui.input.key.key
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.bonbon.library.ActionChip
 import com.bonbon.library.ChipItem
 import com.bonbon.library.OutlineChipsTextField
-import com.bonbon.library.TriggerSeparator
-import com.bonbon.library.textchipviews.MaterialTextChipView
-import com.bonbon.library.textchipviews.OutLinedTextChipView
 import com.bonbon.myapplication.ui.theme.*
 import com.google.accompanist.insets.ProvideWindowInsets
 
@@ -63,7 +44,8 @@ class MainActivity : ComponentActivity() {
                             ) {
                                 OutlineChipsTextField(
                                     label = "Email",
-                                    color = Neutral90
+                                    color = Neutral90,
+                                    icon = painterResource(id = R.drawable.ic_baseline_android_24),
                                 ) {
 //                                    for (i in it) {
 //                                        Log.d("TAG", "onCreate: ${i.value}")

@@ -23,76 +23,76 @@ import androidx.compose.ui.unit.dp
 import com.bonbon.library.corecomponent.CoreChipView
 import com.bonbon.library.model.FilterableEntity
 
-@ExperimentalAnimationApi
-@ExperimentalComposeUiApi
-@Composable
-fun <T> MaterialTextChipView(
-    modifier: Modifier = Modifier,
-    textPadding: Dp = 8.dp,
-    searchableItems: List<T>,
-    chipItems: List<T>,
-    text: String,
-    shape: Shape = MaterialTheme.shapes.medium,
-    textStyle: TextStyle = TextStyle.Default,
-    cursorBrush: Brush = SolidColor(Color.Black),
-    baseLineSpacing: Dp = 2.dp,
-    baseLineColor: Color = MaterialTheme.colors.primary,
-    focused: Boolean = false,
-    onValueChange: (String) -> Unit,
-    onKeyEvent: (KeyEvent) -> Unit,
-    chipContent: @Composable (T) -> Unit,
-    dropDownContent: @Composable (T) -> Unit
-) where T : FilterableEntity {
-
-    var filteredItems by remember {
-        mutableStateOf(searchableItems.distinct())
-    }
-
-    var isFocused by remember {
-        mutableStateOf(focused)
-    }
-
-    val focusRequester = FocusRequester()
-
-    CoreChipView(
-        modifier = modifier,
-        textPadding = textPadding,
-        chipItems = chipItems,
-        isFocused = isFocused,
-        shape = shape,
-        chipContent = chipContent,
-        dropDownContent = dropDownContent,
-        focusRequester = focusRequester,
-        onClicked = {
-            isFocused = it
-        }
-    ) {
-        BasicTextField(value = text, onValueChange = {
-
-            isFocused = true
-            onValueChange(it)
-
-        }, modifier = Modifier
-            .width(IntrinsicSize.Min)
-            .defaultMinSize(15.dp)
-            .padding(6.dp)
-            .onFocusChanged {
-                isFocused = it.isFocused || it.hasFocus || it.isCaptured
-            }
-            .onKeyEvent {
-                onKeyEvent(it)
-                false
-            }
-            .focusRequester(focusRequester = focusRequester),
-            textStyle = textStyle,
-            cursorBrush = cursorBrush
-        )
-
-        Divider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = baseLineSpacing),
-            color = baseLineColor
-        )
-    }
-}
+//@ExperimentalAnimationApi
+//@ExperimentalComposeUiApi
+//@Composable
+//fun <T> MaterialTextChipView(
+//    modifier: Modifier = Modifier,
+//    textPadding: Dp = 8.dp,
+//    searchableItems: List<T>,
+//    chipItems: List<T>,
+//    text: String,
+//    shape: Shape = MaterialTheme.shapes.medium,
+//    textStyle: TextStyle = TextStyle.Default,
+//    cursorBrush: Brush = SolidColor(Color.Black),
+//    baseLineSpacing: Dp = 2.dp,
+//    baseLineColor: Color = MaterialTheme.colors.primary,
+//    focused: Boolean = false,
+//    onValueChange: (String) -> Unit,
+//    onKeyEvent: (KeyEvent) -> Unit,
+//    chipContent: @Composable (T) -> Unit,
+//    dropDownContent: @Composable (T) -> Unit
+//) where T : FilterableEntity {
+//
+//    var filteredItems by remember {
+//        mutableStateOf(searchableItems.distinct())
+//    }
+//
+//    var isFocused by remember {
+//        mutableStateOf(focused)
+//    }
+//
+//    val focusRequester = FocusRequester()
+//
+//    CoreChipView(
+//        modifier = modifier,
+//        textPadding = textPadding,
+//        chipItems = chipItems,
+//        isFocused = isFocused,
+//        shape = shape,
+//        chipContent = chipContent,
+//        dropDownContent = dropDownContent,
+//        focusRequester = focusRequester,
+//        onClicked = {
+//            isFocused = it
+//        }
+//    ) {
+//        BasicTextField(value = text, onValueChange = {
+//
+//            isFocused = true
+//            onValueChange(it)
+//
+//        }, modifier = Modifier
+//            .width(IntrinsicSize.Min)
+//            .defaultMinSize(15.dp)
+//            .padding(6.dp)
+//            .onFocusChanged {
+//                isFocused = it.isFocused || it.hasFocus || it.isCaptured
+//            }
+//            .onKeyEvent {
+//                onKeyEvent(it)
+//                false
+//            }
+//            .focusRequester(focusRequester = focusRequester),
+//            textStyle = textStyle,
+//            cursorBrush = cursorBrush
+//        )
+//
+//        Divider(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(top = baseLineSpacing),
+//            color = baseLineColor
+//        )
+//    }
+//}

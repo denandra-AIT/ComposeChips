@@ -5,18 +5,23 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.R
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.SoftwareKeyboardController
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.bonbon.library.model.FilterableEntity
+import com.bonbon.myapplication.ui.theme.PrimaryBase
 import com.google.accompanist.flowlayout.FlowRow
 
 @ExperimentalAnimationApi
@@ -28,6 +33,8 @@ internal fun <T> CoreChipView(
     textPadding: Dp = 8.dp,
 //    filteredItems: List<T>,
     chipItems: List<T>,
+    show: () -> Unit = {},
+    icon: Painter?,
     shape: Shape = MaterialTheme.shapes.medium,
     keyboardController: SoftwareKeyboardController? = LocalSoftwareKeyboardController.current,
     isFocused: Boolean = false,
@@ -51,11 +58,27 @@ internal fun <T> CoreChipView(
 
                     }, verticalArrangement = Arrangement.Center
             ) {
-                FlowRow {
-                    ChipGroup(items = chipItems) {
-                        chipContent(it)
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    FlowRow {
+                        ChipGroup(items = chipItems) {
+                            chipContent(it)
+                        }
+                        textFieldContent()
                     }
-                    textFieldContent()
+                    Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
+                        if (icon != null) {
+                            Icon(
+                                painter = icon,
+                                tint = PrimaryBase,
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .padding(end = 12.dp)
+                                    .clickable {
+                                        show()
+                                    }
+                            )
+                        }
+                    }
                 }
             }
 
