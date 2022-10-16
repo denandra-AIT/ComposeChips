@@ -32,6 +32,7 @@ fun DropDownChipsTextField(
     selectedItems: MutableList<String?> = mutableStateListOf(),
     show: () -> Unit = {},
     icon: Painter?,
+    removedItems: (String) -> Unit,
     value: (List<String?>) -> Unit,
 ) {
     var text by remember {
@@ -74,6 +75,7 @@ fun DropDownChipsTextField(
                 shape = RoundedCornerShape(18.dp)
             ) {
                 selectedItems.remove(it)
+                removedItems(it)
             }
         },
         onKeyEvent = {

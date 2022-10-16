@@ -91,7 +91,8 @@ fun OutLinedTextChipView(
                     onKeyEvent(it)
                     false
                 }
-                .focusRequester(focusRequester = focusRequester),
+                .focusRequester(focusRequester = focusRequester)
+                .clickable { show() },
             cursorBrush = cursorBrush,
             textStyle = textStyle,
             enabled = enable

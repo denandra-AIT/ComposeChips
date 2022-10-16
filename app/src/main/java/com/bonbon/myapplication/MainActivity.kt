@@ -1,6 +1,7 @@
 package com.bonbon.myapplication
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val scrollState = rememberScrollState()
                     var selectedItems = SnapshotStateList<ChipItem>()
-                    var asd = mutableListOf<String?>("hehehehhe", "qweqweqwe", "opopopopo")
+                    var asd = mutableListOf<String?>("heheh", "qweqwe", "opoaopopo")
                     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                         Box(
                             modifier = Modifier.scrollable(
@@ -59,6 +60,13 @@ class MainActivity : ComponentActivity() {
                                     color = Neutral90,
                                     icon = painterResource(id = R.drawable.ic_baseline_android_24),
                                     selectedItems = asd,
+                                    removedItems = {
+                                        for (i in asd.indices) {
+                                            if (asd[i] == it) {
+                                                asd.removeAt(i)
+                                            }
+                                        }
+                                    },
                                     show = {
                                         asd.add("hehehhee")
                                     }

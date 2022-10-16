@@ -60,9 +60,16 @@ internal fun <T> CoreChipView(
 
                     }, verticalArrangement = Arrangement.Center
             ) {
-                Row(modifier = Modifier.fillMaxWidth()) {
-                    FlowRow {
-                        ChipGroup(items = chipItems) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    FlowRow(
+                        modifier = Modifier.width(300.dp)
+                    ) {
+                        ChipGroup(
+                            items = chipItems,
+
+                        ) {
                             chipContent(it)
                         }
                         textFieldContent()
@@ -71,14 +78,13 @@ internal fun <T> CoreChipView(
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.End,
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier.fillMaxHeight(),
                         ) {
                             Icon(
                                 painter = icon,
                                 tint = PrimaryBase,
                                 contentDescription = "",
                                 modifier = Modifier
-                                    .padding(16.dp)
                                     .size(24.dp)
                                     .clickable {
                                         show()
