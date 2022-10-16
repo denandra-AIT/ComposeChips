@@ -31,7 +31,7 @@ fun OutlineChipsTextField(
     color: Color = Neutral90,
     show: () -> Unit = {},
     icon: Painter?,
-    value: (List<String>) -> Unit,
+    value: (MutableList<String?>) -> Unit,
 ) {
     var text by remember {
         mutableStateOf("")
@@ -44,7 +44,7 @@ fun OutlineChipsTextField(
         color = color,
     )
     val selectedItems = remember {
-        mutableStateListOf<String>()
+        mutableListOf<String?>()
     }
 
     OutLinedTextChipView(

@@ -35,7 +35,7 @@ import com.bonbon.library.model.FilterableEntity
 fun OutLinedTextChipView(
     modifier: Modifier = Modifier,
     textPadding: Dp = 8.dp,
-    chipItems: List<String>,
+    chipItems: MutableList<String?>,
     text: String,
     shape: Shape = MaterialTheme.shapes.medium,
     focusColor: Color = MaterialTheme.colors.primary,

@@ -29,10 +29,10 @@ fun DropDownChipsTextField(
     label: String,
     labelStyle: TextStyle = TextStyle(),
     color: Color = Neutral90,
-    selectedItems: MutableList<String> = mutableStateListOf(),
+    selectedItems: MutableList<String?> = mutableStateListOf(),
     show: () -> Unit = {},
     icon: Painter?,
-    value: (List<String>) -> Unit,
+    value: (List<String?>) -> Unit,
 ) {
     var text by remember {
         mutableStateOf("")

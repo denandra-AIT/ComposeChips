@@ -8,13 +8,15 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 internal fun ChipGroup(
-    items: List<String>,
+    items: MutableList<String?>,
     modifier: Modifier = Modifier,
     content: @Composable (String) -> Unit
 ) {
     items.forEach {
         Box(modifier = modifier.padding(2.dp)) {
-            content(it)
+            if (it != null) {
+                content(it)
+            }
         }
     }
 
