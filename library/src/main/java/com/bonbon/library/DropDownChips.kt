@@ -31,7 +31,7 @@ fun DropDownChipsTextField(
     color: Color = Neutral90,
     selectedItems: SnapshotStateList<ChipItem> = mutableStateListOf(),
     show: () -> Unit = {},
-    icon: Painter,
+    icon: Painter?,
     value: (SnapshotStateList<ChipItem>) -> Unit,
 ) {
     var text by remember {
