@@ -7,10 +7,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-internal fun <T>ChipGroup(
-    items: List<T>,
+internal fun ChipGroup(
+    items: List<String>,
     modifier: Modifier = Modifier,
-    content: @Composable (T) -> Unit
+    content: @Composable (String) -> Unit
 ) {
     items.forEach {
         Box(modifier = modifier.padding(2.dp)) {

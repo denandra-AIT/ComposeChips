@@ -32,10 +32,10 @@ import com.bonbon.library.model.FilterableEntity
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @Composable
-fun <T> OutLinedTextChipView(
+fun OutLinedTextChipView(
     modifier: Modifier = Modifier,
     textPadding: Dp = 8.dp,
-    chipItems: List<T>,
+    chipItems: List<String>,
     text: String,
     shape: Shape = MaterialTheme.shapes.medium,
     focusColor: Color = MaterialTheme.colors.primary,
@@ -47,9 +47,9 @@ fun <T> OutLinedTextChipView(
     enable: Boolean = true,
     onValueChange: (String) -> Unit,
     onKeyEvent: (KeyEvent) -> Unit,
-    chipContent: @Composable (T) -> Unit,
-    dropDownContent: @Composable (T) -> Unit,
-) where T : FilterableEntity {
+    chipContent: @Composable (String) -> Unit,
+    dropDownContent: @Composable (String) -> Unit,
+) {
 
     var isFocused by remember {
         mutableStateOf(false)

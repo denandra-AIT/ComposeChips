@@ -16,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.bonbon.library.ActionChip
 import com.bonbon.library.ChipItem
+import com.bonbon.library.DropDownChipsTextField
 import com.bonbon.library.OutlineChipsTextField
 import com.bonbon.myapplication.ui.theme.*
 import com.google.accompanist.insets.ProvideWindowInsets
@@ -32,6 +33,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val scrollState = rememberScrollState()
                     var selectedItems = SnapshotStateList<ChipItem>()
+                    var asd = mutableListOf<String>("asd", "asdasd", "jejwjwe")
                     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                         Box(
                             modifier = Modifier.scrollable(
@@ -45,7 +47,21 @@ class MainActivity : ComponentActivity() {
                                 OutlineChipsTextField(
                                     label = "Email",
                                     color = Neutral90,
+                                    icon = null,
+                                ) {
+//                                    for (i in it) {
+//                                        Log.d("TAG", "onCreate: ${i.value}")
+//                                    }
+//                                    selectedItems = it
+                                }
+                                DropDownChipsTextField(
+                                    label = "Items",
+                                    color = Neutral90,
                                     icon = painterResource(id = R.drawable.ic_baseline_android_24),
+                                    selectedItems = asd,
+                                    show = {
+                                        asd.add("hehehhee")
+                                    }
                                 ) {
 //                                    for (i in it) {
 //                                        Log.d("TAG", "onCreate: ${i.value}")

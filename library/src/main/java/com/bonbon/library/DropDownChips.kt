@@ -29,10 +29,10 @@ fun DropDownChipsTextField(
     label: String,
     labelStyle: TextStyle = TextStyle(),
     color: Color = Neutral90,
-    selectedItems: SnapshotStateList<ChipItem> = mutableStateListOf(),
+    selectedItems: MutableList<String> = mutableStateListOf(),
     show: () -> Unit = {},
     icon: Painter?,
-    value: (SnapshotStateList<ChipItem>) -> Unit,
+    value: (List<String>) -> Unit,
 ) {
     var text by remember {
         mutableStateOf("")
@@ -58,7 +58,7 @@ fun DropDownChipsTextField(
         onValueChange = {
             text = if (it.trim().isNotEmpty() && it.contains(TriggerSeparator.Space.value) || it.contains(TriggerSeparator.Enter.value)) {
                 val trimmedText = text.trim()
-                selectedItems.add(ChipItem(trimmedText))
+                selectedItems.add(trimmedText)
                 ""
             } else {
                 it
@@ -67,7 +67,7 @@ fun DropDownChipsTextField(
         },
         chipContent = {
             ActionChip(
-                text = it.value,
+                text = it,
                 closeIcon = rememberVectorPainter(image = Icons.Default.Close),
                 color = Neutral20,
 
@@ -94,7 +94,7 @@ fun DropDownChipsTextField(
                 selectedItems.add(it)
             }
             .padding(8.dp)) {
-            Text(text = it.value)
+            Text(text = it)
         }
     }
 }
