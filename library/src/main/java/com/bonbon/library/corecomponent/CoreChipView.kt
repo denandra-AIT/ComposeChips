@@ -1,6 +1,7 @@
 package com.bonbon.library.corecomponent
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -65,14 +67,19 @@ internal fun <T> CoreChipView(
                         }
                         textFieldContent()
                     }
-                    Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
-                        if (icon != null) {
+                    if (icon != null) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.End,
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
                             Icon(
                                 painter = icon,
                                 tint = PrimaryBase,
                                 contentDescription = "",
                                 modifier = Modifier
-                                    .padding(end = 12.dp)
+                                    .padding(16.dp)
+                                    .size(24.dp)
                                     .clickable {
                                         show()
                                     }
