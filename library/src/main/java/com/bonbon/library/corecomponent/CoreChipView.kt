@@ -32,7 +32,7 @@ internal fun <T> CoreChipView(
     focusRequester: FocusRequester,
     textPadding: Dp = 8.dp,
 //    filteredItems: List<T>,
-    chipItems: List<String>,
+    chipItems: MutableList<String?>,
     show: () -> Unit = {},
     icon: Painter?,
     shape: Shape = MaterialTheme.shapes.medium,
