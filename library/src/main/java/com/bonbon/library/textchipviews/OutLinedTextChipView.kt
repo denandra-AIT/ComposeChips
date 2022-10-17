@@ -26,16 +26,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.bonbon.library.ChipItem
 import com.bonbon.library.corecomponent.CoreChipView
 import com.bonbon.library.model.FilterableEntity
 
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @Composable
-fun OutLinedTextChipView(
+fun <T> OutLinedTextChipView(
     modifier: Modifier = Modifier,
     textPadding: Dp = 8.dp,
-    chipItems: MutableList<String?>,
+    chipItems: List<T>,
     text: String,
     shape: Shape = MaterialTheme.shapes.medium,
     focusColor: Color = MaterialTheme.colors.primary,
@@ -47,9 +48,9 @@ fun OutLinedTextChipView(
     enable: Boolean = true,
     onValueChange: (String) -> Unit,
     onKeyEvent: (KeyEvent) -> Unit,
-    chipContent: @Composable (String) -> Unit,
-    dropDownContent: @Composable (String) -> Unit,
-) {
+    chipContent: @Composable (T) -> Unit,
+    dropDownContent: @Composable (T) -> Unit,
+) where T : FilterableEntity {
 
     var isFocused by remember {
         mutableStateOf(false)
@@ -91,8 +92,7 @@ fun OutLinedTextChipView(
                     onKeyEvent(it)
                     false
                 }
-                .focusRequester(focusRequester = focusRequester)
-                .clickable { show() },
+                .focusRequester(focusRequester = focusRequester),
             cursorBrush = cursorBrush,
             textStyle = textStyle,
             enabled = enable

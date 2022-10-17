@@ -1,5 +1,6 @@
 package com.bonbon.library
 
+import android.util.Log
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -29,7 +30,7 @@ fun DropDownChipsTextField(
     label: String,
     labelStyle: TextStyle = TextStyle(),
     color: Color = Neutral90,
-    selectedItems: MutableList<String?> = mutableStateListOf(),
+    selectedItems: SnapshotStateList<ChipItem> = mutableStateListOf(),
     show: () -> Unit = {},
     icon: Painter?,
     removedItems: (String) -> Unit,
@@ -59,23 +60,23 @@ fun DropDownChipsTextField(
         onValueChange = {
             text = if (it.trim().isNotEmpty() && it.contains(TriggerSeparator.Space.value) || it.contains(TriggerSeparator.Enter.value)) {
                 val trimmedText = text.trim()
-                selectedItems.add(trimmedText)
+                selectedItems.add(ChipItem(trimmedText))
                 ""
             } else {
                 it
             }
-            value(selectedItems)
+//            value(selectedItems)
         },
         chipContent = {
             ActionChip(
-                text = it,
+                text = it.value,
                 closeIcon = rememberVectorPainter(image = Icons.Default.Close),
                 color = Neutral20,
 
                 shape = RoundedCornerShape(18.dp)
             ) {
                 selectedItems.remove(it)
-                removedItems(it)
+                removedItems(it.value)
             }
         },
         onKeyEvent = {
@@ -96,7 +97,7 @@ fun DropDownChipsTextField(
                 selectedItems.add(it)
             }
             .padding(8.dp)) {
-            Text(text = it)
+            Text(text = it.value)
         }
     }
 }
