@@ -44,7 +44,7 @@ fun OutlineChipsTextField(
         color = color,
     )
     val selectedItems = remember {
-        mutableListOf<String?>()
+        mutableStateListOf<ChipItem>()
     }
 
     OutLinedTextChipView(
@@ -57,16 +57,16 @@ fun OutlineChipsTextField(
         onValueChange = {
             text = if (it.trim().isNotEmpty() && it.contains(TriggerSeparator.Space.value) || it.contains(TriggerSeparator.Enter.value)) {
                 val trimmedText = text.trim()
-                selectedItems.add(trimmedText)
+                selectedItems.add(ChipItem(trimmedText))
                 ""
             } else {
                 it
             }
-            value(selectedItems)
+//            value(selectedItems)
         },
         chipContent = {
             ActionChip(
-                text = it,
+                text = it.value,
                 closeIcon = rememberVectorPainter(image = Icons.Default.Close),
                 color = Neutral20,
 
@@ -92,7 +92,7 @@ fun OutlineChipsTextField(
                 selectedItems.add(it)
             }
             .padding(8.dp)) {
-            Text(text = it)
+            Text(text = it.value)
         }
     }
 }

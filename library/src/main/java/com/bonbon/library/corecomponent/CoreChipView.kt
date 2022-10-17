@@ -22,6 +22,7 @@ import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.bonbon.library.ChipItem
 import com.bonbon.library.model.FilterableEntity
 import com.bonbon.myapplication.ui.theme.PrimaryBase
 import com.google.accompanist.flowlayout.FlowRow
@@ -34,14 +35,14 @@ internal fun <T> CoreChipView(
     focusRequester: FocusRequester,
     textPadding: Dp = 8.dp,
 //    filteredItems: List<T>,
-    chipItems: MutableList<String?>,
+    chipItems: List<T>,
     show: () -> Unit = {},
     icon: Painter?,
     shape: Shape = MaterialTheme.shapes.medium,
     keyboardController: SoftwareKeyboardController? = LocalSoftwareKeyboardController.current,
     isFocused: Boolean = false,
     onClicked: (Boolean) -> Unit,
-    chipContent: @Composable (String) -> Unit,
+    chipContent: @Composable (T) -> Unit,
     dropDownContent: @Composable (T) -> Unit,
     textFieldContent: @Composable () -> Unit,
 ) where T : FilterableEntity {
@@ -96,25 +97,6 @@ internal fun <T> CoreChipView(
             }
 
             Spacer(modifier = Modifier.padding(1.dp))
-
-//            PopupContent(
-//                width = boxWithConstraints.maxWidth,
-//                isTextFocused = isFocused,
-//                shape = shape,
-//                onDismissed = {
-//                    onClicked(false)
-//                }
-//            ) {
-//                LazyColumn(
-//                    modifier = Modifier
-//                        .fillMaxWidth(),
-//                    content = {
-//                        items(items = filteredItems, itemContent = { item ->
-//                            dropDownContent(item)
-//                        })
-//                    }
-//                )
-//            }
         }
 
     }

@@ -34,7 +34,10 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val scrollState = rememberScrollState()
                     var selectedItems = SnapshotStateList<ChipItem>()
-                    var asd = mutableListOf<String?>("Apple", "Banana", "qweq")
+                    selectedItems.add(ChipItem("Apple"))
+                    selectedItems.add(ChipItem("Banana"))
+                    selectedItems.add(ChipItem("Strawberry"))
+//                    var asd = mutableListOf<ChipItem>()
                     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                         Box(
                             modifier = Modifier.scrollable(
@@ -50,31 +53,26 @@ class MainActivity : ComponentActivity() {
                                     color = Neutral90,
                                     icon = null,
                                 ) {
-//                                    for (i in it) {
-//                                        Log.d("TAG", "onCreate: ${i.value}")
-//                                    }
-//                                    selectedItems = it
+
                                 }
                                 DropDownChipsTextField(
                                     label = "Items",
                                     color = Neutral90,
                                     icon = painterResource(id = R.drawable.ic_baseline_android_24),
-                                    selectedItems = asd,
+                                    selectedItems = selectedItems,
                                     removedItems = {
-                                        for (i in asd.indices) {
-                                            if (asd[i] == it) {
-                                                asd.removeAt(i)
+                                        for (i in selectedItems.indices) {
+                                            if (selectedItems[i].value == it) {
+                                                selectedItems.removeAt(i)
+                                                break
                                             }
                                         }
                                     },
                                     show = {
-                                        asd.add("hehehhee")
+                                        selectedItems.add(ChipItem("asd"))
                                     }
                                 ) {
-//                                    for (i in it) {
-//                                        Log.d("TAG", "onCreate: ${i.value}")
-//                                    }
-//                                    selectedItems = it
+
                                 }
                             }
                         }
