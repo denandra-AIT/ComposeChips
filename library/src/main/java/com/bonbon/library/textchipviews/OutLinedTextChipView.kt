@@ -29,6 +29,8 @@ import androidx.compose.ui.unit.dp
 import com.bonbon.library.ChipItem
 import com.bonbon.library.corecomponent.CoreChipView
 import com.bonbon.library.model.FilterableEntity
+import com.bonbon.myapplication.ui.theme.Neutral40
+import com.bonbon.myapplication.ui.theme.Neutral90
 
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
@@ -40,7 +42,7 @@ fun <T> OutLinedTextChipView(
     text: String,
     shape: Shape = MaterialTheme.shapes.medium,
     focusColor: Color = MaterialTheme.colors.primary,
-    unFocusColor: Color = MaterialTheme.colors.primary,
+    unFocusColor: Color = Neutral40,
     textStyle: TextStyle = MaterialTheme.typography.body1,
     cursorBrush: Brush = SolidColor(Color.Black),
     show: () -> Unit = {},
@@ -60,7 +62,7 @@ fun <T> OutLinedTextChipView(
 
     CoreChipView(
         modifier = modifier.border(
-            border = BorderStroke(if (isFocused) 2.dp else 1.5.dp, if (isFocused) focusColor else unFocusColor),
+            border = BorderStroke(if (isFocused) 2.dp else 1.2.dp, if (isFocused) focusColor else unFocusColor),
             shape = shape
         ),
         textPadding = textPadding,
