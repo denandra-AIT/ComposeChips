@@ -22,6 +22,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.bonbon.library.corecomponent.BonChip
+import com.bonbon.myapplication.ui.theme.Neutral60
+import com.bonbon.myapplication.ui.theme.Neutral90
 
 @Composable
 fun ActionChip(
@@ -55,6 +57,7 @@ fun ActionChip(
                 Icon(
                     closeIcon,
                     contentDescription = "Close Chip",
+                    tint = Neutral60,
                     modifier = Modifier
                         .padding(end = 8.dp)
                         .size(18.dp)

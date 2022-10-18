@@ -73,7 +73,7 @@ fun DropDownChipsTextField(
                 closeIcon = rememberVectorPainter(image = Icons.Default.Close),
                 color = Neutral20,
 
-                shape = RoundedCornerShape(18.dp)
+                shape = RoundedCornerShape(5.dp)
             ) {
                 selectedItems.remove(it)
                 removedItems(it.value)
