@@ -34,10 +34,9 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val scrollState = rememberScrollState()
                     var selectedItems = SnapshotStateList<ChipItem>()
-                    selectedItems.add(ChipItem("Apple"))
-                    selectedItems.add(ChipItem("Banana"))
-                    selectedItems.add(ChipItem("Strawberry"))
-                    selectedItems.add(ChipItem("Strawbery"))
+                    selectedItems.add(ChipItem("Guava"))
+                    selectedItems.add(ChipItem("Durian"))
+                    selectedItems.add(ChipItem("Cherryyyy"))
 //                    var asd = mutableListOf<ChipItem>()
                     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                         Box(
