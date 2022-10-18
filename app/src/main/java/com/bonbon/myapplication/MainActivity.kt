@@ -37,6 +37,7 @@ class MainActivity : ComponentActivity() {
                     selectedItems.add(ChipItem("Apple"))
                     selectedItems.add(ChipItem("Banana"))
                     selectedItems.add(ChipItem("Strawberry"))
+                    selectedItems.add(ChipItem("Strawbery"))
 //                    var asd = mutableListOf<ChipItem>()
                     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                         Box(

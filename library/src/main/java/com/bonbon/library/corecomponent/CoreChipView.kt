@@ -62,24 +62,32 @@ internal fun <T> CoreChipView(
                     }, verticalArrangement = Arrangement.Center
             ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth().fillMaxHeight(1f),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight(1f),
                 ) {
-                    FlowRow(
-                        modifier = Modifier.width(270.dp)
-                    ) {
-                        ChipGroup(
-                            items = chipItems,
-
+                    Row () {
+                        FlowRow(
+                            modifier = Modifier.width(300.dp)
                         ) {
-                            chipContent(it)
+                            ChipGroup(
+                                items = chipItems,
+
+                                ) {
+                                chipContent(it)
+                            }
+                            textFieldContent()
                         }
-                        textFieldContent()
                     }
                     if (icon != null) {
+                        Spacer(modifier = Modifier.weight(1f))
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.End,
-                            modifier = Modifier.fillMaxHeight().width(55.dp).height(30.dp),
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .width(55.dp)
+                                .height(30.dp),
                         ) {
                             Icon(
                                 painter = icon,
@@ -96,7 +104,7 @@ internal fun <T> CoreChipView(
                 }
             }
 
-            Spacer(modifier = Modifier.padding(1.dp))
+//            Spacer(modifier = Modifier.padding(1.dp))
         }
 
     }
