@@ -68,7 +68,7 @@ internal fun <T> CoreChipView(
                 ) {
                     Row () {
                         FlowRow(
-                            modifier = Modifier.width(300.dp)
+                            modifier = Modifier.width(280.dp)
                         ) {
                             ChipGroup(
                                 items = chipItems,
@@ -86,8 +86,9 @@ internal fun <T> CoreChipView(
                             horizontalArrangement = Arrangement.End,
                             modifier = Modifier
                                 .fillMaxHeight()
-                                .width(55.dp)
-                                .height(30.dp),
+                                .width(60.dp)
+                                .height(30.dp)
+                                .padding(end = 12.dp),
                         ) {
                             Icon(
                                 painter = icon,
