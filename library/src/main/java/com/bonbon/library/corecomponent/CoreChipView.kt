@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.bonbon.library.ChipItem
 import com.bonbon.library.model.FilterableEntity
+import com.bonbon.library.noRippleClickable
 import com.bonbon.myapplication.ui.theme.PrimaryBase
 import com.google.accompanist.flowlayout.FlowRow
 
@@ -54,11 +55,11 @@ internal fun <T> CoreChipView(
                 modifier = Modifier
                     .padding(textPadding)
                     .fillMaxWidth()
-                    .clickable {
+                    .noRippleClickable {
                         onClicked(true)
                         keyboardController?.show()
                         focusRequester.requestFocus()
-
+                        show()
                     }, verticalArrangement = Arrangement.Center
             ) {
                 Row(
@@ -88,7 +89,7 @@ internal fun <T> CoreChipView(
                                 .fillMaxHeight()
                                 .width(60.dp)
                                 .height(30.dp)
-                                .padding(end = 12.dp),
+                                .padding(end = 10.dp),
                         ) {
                             Icon(
                                 painter = icon,

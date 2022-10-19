@@ -1,5 +1,6 @@
 package com.bonbon.library.textchipviews
 
+import android.util.Log
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
@@ -62,7 +63,7 @@ fun <T> OutLinedTextChipView(
 
     CoreChipView(
         modifier = modifier.border(
-            border = BorderStroke(if (isFocused) 2.dp else 1.2.dp, if (isFocused) focusColor else unFocusColor),
+            border = BorderStroke(if (isFocused) 2.dp else 1.dp, if (isFocused) focusColor else unFocusColor),
             shape = shape
         ),
         textPadding = textPadding,
@@ -75,6 +76,7 @@ fun <T> OutLinedTextChipView(
         show = show,
         icon = icon,
         onClicked = {
+            Log.d("TAG ", "OutLinedTextChipView: hehehe")
             isFocused = it
         }
     ) {

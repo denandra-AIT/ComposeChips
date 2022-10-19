@@ -46,9 +46,6 @@ fun DropDownChipsTextField(
         modifier = Modifier.padding(bottom = 4.dp),
         color = color,
     )
-//    val selectedItems = remember {
-//        mutableStateListOf<ChipItem>()
-//    }
 
     OutLinedTextChipView(
         modifier = Modifier,
